@@ -1,6 +1,9 @@
 {
-  "buildCommand": "npm ci && npm run build",
+  "buildCommand": "npm ci --include=dev && npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm ci",
-  "nodeVersion": "18.x"
+  "installCommand": "npm ci --include=dev",
+  "nodeVersion": "18.x",
+  "env": {
+    "VITE_CJS_IGNORE_WARNING": "true"
+  }
 }

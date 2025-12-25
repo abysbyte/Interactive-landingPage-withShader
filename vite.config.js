@@ -5,10 +5,11 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     minify: 'terser',
+    sourcemap: false,
   },
   server: {
     port: 5173,
-    open: true,
+    open: false,
   },
   publicDir: 'public',
 });

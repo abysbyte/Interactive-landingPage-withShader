@@ -1,6 +1,5 @@
 {
-  "buildCommand": "npm install && npx vite build",
+  "buildCommand": "bash build.sh",
   "outputDirectory": "dist",
-  "installCommand": "npm install",
   "nodeVersion": "18.x"
 }

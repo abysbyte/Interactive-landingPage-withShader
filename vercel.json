@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npx vite build",
+  "buildCommand": "chmod +x build.sh && bash build.sh",
   "outputDirectory": "dist",
-  "installCommand": "npm install",
+  "framework": null,
   "nodeVersion": "20.x"
 }

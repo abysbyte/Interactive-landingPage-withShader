@@ -5,6 +5,6 @@ echo "Installing dependencies..."
 npm install
 
 echo "Building project..."
-./node_modules/.bin/vite build
+npx --yes vite build
 
 echo "Build complete!"

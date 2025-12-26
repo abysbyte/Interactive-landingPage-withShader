@@ -1,23 +1,17 @@
 {
   "name": "interactive-landingpage-withshader",
   "version": "1.0.0",
-  "description": "> A stunning, interactive landing page featuring real-time fluid simulation with GPU-accelerated shader effects. Move your mouse to paint the screen with dynamic fluid physics.",
-  "main": "script.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abysbyte/Interactive-landingPage-withShader.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/abysbyte/Interactive-landingPage-withShader/issues"
-  },
-  "homepage": "https://github.com/abysbyte/Interactive-landingPage-withShader#readme",
   "dependencies": {
     "three": "^0.182.0"
   },

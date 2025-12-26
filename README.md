@@ -1,6 +1,5 @@
 # Interactive Landing Page with Fluid Shader
 
-** site preview https://landing-page-with-shader.vercel.app **
 
 > A stunning, interactive landing page featuring real-time fluid simulation with GPU-accelerated shader effects. Move your mouse to paint the screen with dynamic fluid physics.
 
@@ -8,6 +7,8 @@
 ![WebGL](https://img.shields.io/badge/WebGL-FF6B35?style=flat-square&logo=webgl)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript)
+
+** check out page -  https://landing-page-with-shader.vercel.app **
 
 ## ✨ Features
 

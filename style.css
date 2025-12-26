@@ -82,3 +82,46 @@ canvas {
     z-index: 2;
     align-items: flex-end;
 }
+
+/* Tablet screens (768px and below) */
+@media (max-width: 768px) {
+    a, p {
+        font-size: 1.5rem;
+        line-height: 0.9;
+    }
+
+    .site-name a {
+        font-size: 2rem;
+    }
+
+    nav {
+        padding: 1.5rem;
+    }
+
+    .footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Mobile screens (480px and below) */
+@media (max-width: 480px) {
+    a, p {
+        font-size: 1rem;
+        line-height: 1;
+    }
+
+    .site-name a {
+        font-size: 1.25rem;
+    }
+
+    nav {
+        padding: 1rem;
+    }
+
+    .footer {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+

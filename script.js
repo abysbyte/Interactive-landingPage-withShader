@@ -83,8 +83,8 @@ function init() {
     });
 
     // Load textures from public assets (served at /assests/)
-    loadImage("/assests/images/fci1.jpeg", topTexture, topTextureSize);
-    loadImage("/assests/images/fci2.png", bottomTexture, bottomTextureSize);
+    loadImage("/assests/images/fci6.jpeg", topTexture, topTextureSize);
+    loadImage("/assests/images/fci10.png", bottomTexture, bottomTextureSize);
 
     const planeGeometry = new THREE.PlaneGeometry(2, 2);
     const displayMesh = new THREE.Mesh(planeGeometry, displayMaterial);

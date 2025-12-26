@@ -28,7 +28,7 @@ a, p {
     text-decoration: none;
     text-transform: uppercase;
     color: var(--fg);
-    font-size: 1rem;
+    font-size: 3rem;
     font-weight: 200;
     line-height: 0.78;
     display: block;
@@ -46,7 +46,7 @@ nav {
 
 .site-name a {
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 4rem;
 }
 
 .menu p {

@@ -20,5 +20,8 @@
   "homepage": "https://github.com/abysbyte/Interactive-landingPage-withShader#readme",
   "dependencies": {
     "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.0"
   }
 }

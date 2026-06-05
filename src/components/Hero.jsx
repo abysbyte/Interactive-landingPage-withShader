@@ -6,13 +6,14 @@ import {
     displayFragmentShader
 } from "./shaders.js";
 
-export default function Hero() {
+export default function Hero({ isHome }) {
     const canvasRef = useRef(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
+        let isMounted = true;
         let animationFrameId;
 
         // Initialize Three.js WebGLRenderer
@@ -126,6 +127,7 @@ export default function Hero() {
             img.crossOrigin = "anonymous";
 
             img.onload = function () {
+                if (!isMounted) return;
                 const originWidth = img.width;
                 const originHeight = img.height;
                 textureSizeVector.set(originWidth, originHeight);
@@ -174,6 +176,7 @@ export default function Hero() {
             };
 
             img.onerror = function (err) {
+                if (!isMounted) return;
                 console.error(`Error loading image ${url}:`, err);
             };
             img.src = url;
@@ -272,6 +275,7 @@ export default function Hero() {
 
         // Cleanup DOM and WebGL bindings on unmount to prevent resource leaks
         return () => {
+            isMounted = false;
             cancelAnimationFrame(animationFrameId);
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("touchmove", onTouchMove);
@@ -292,10 +296,12 @@ export default function Hero() {
     return (
         <section className="hero">
             <canvas ref={canvasRef}></canvas>
-            <footer className="footer">
-                <p>Creative Work</p>
-                <p>Landing page</p>
-            </footer>
+            {isHome && (
+                <footer className="footer">
+                    <p>Creative Work</p>
+                    <p>Landing page</p>
+                </footer>
+            )}
         </section>
     );
 }

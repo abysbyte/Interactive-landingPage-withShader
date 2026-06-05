@@ -14,7 +14,7 @@ const CLOSE_START = `M${SVG_WIDTH},0 Q${SVG_CENTER_X},0 0,0 L0,${SVG_HEIGHT} L${
 const CLOSE_BULGE = `M${SVG_WIDTH},350 Q${SVG_CENTER_X},130 0,350 L0,${SVG_HEIGHT} L${SVG_WIDTH},${SVG_HEIGHT} Z`;
 const CLOSE_HIDDEN = `M${SVG_WIDTH},${SVG_HEIGHT} Q${SVG_CENTER_X},${SVG_HEIGHT} 0,${SVG_HEIGHT} L0,${SVG_HEIGHT} L${SVG_WIDTH},${SVG_HEIGHT} Z`;
 
-export default function Nav() {
+export default function Nav({ currentPath, onNavigate }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
     const containerRef = useRef(null);
@@ -123,6 +123,57 @@ export default function Nav() {
         }
     });
 
+    const handleLinkClick = (e, href) => {
+        e.preventDefault();
+        if (currentPath === href) {
+            if (isOpen) {
+                handleToggle();
+            }
+            return;
+        }
+
+        if (isOpen) {
+            if (isAnimating) return;
+            setIsAnimating(true);
+            setIsOpen(false);
+
+            gsap.set(".menu-path", { attr: { d: CLOSE_START } });
+            gsap.to(".nav-toggle-close", { duration: 0.3, opacity: 0, ease: "none" });
+            gsap.to(".nav-toggle-menu", {
+                duration: 0.3,
+                opacity: 1,
+                ease: "none",
+                delay: 0.25,
+            });
+
+            const t1 = gsap.timeline({
+                onComplete: () => {
+                    setIsAnimating(false);
+                    gsap.set(".char", { opacity: 0, x: "750%" });
+                    gsap.set(".menu-col-links a", { opacity: 1 });
+                    gsap.set(".menu-info-item", { opacity: 0, y: 100 });
+                    onNavigate(href);
+                },
+            });
+
+            t1.to(".menu-logo", { duration: 0.3, opacity: 0 })
+                .to(".menu-col-links a", { duration: 0.3, opacity: 0 }, "<")
+                .to(".menu-info-item", { duration: 0.3, opacity: 0 }, "<");
+
+            t1.to(
+                ".menu-path",
+                { duration: 0.5, attr: { d: CLOSE_BULGE }, ease: "power3.in" },
+                "<",
+            ).to(".menu-path", {
+                duration: 0.5,
+                attr: { d: CLOSE_HIDDEN },
+                ease: "power3.out",
+            });
+        } else {
+            onNavigate(href);
+        }
+    };
+
     const menuLinks = [
         { label: "Work", href: "/work" },
         { label: "Projects", href: "/projects" },
@@ -134,7 +185,7 @@ export default function Nav() {
     return (
         <div ref={containerRef} className="nav">
             <div className="nav-logo">
-                <a href="/">Cruise</a>
+                <a href="/" onClick={(e) => handleLinkClick(e, "/")}>Cruise</a>
             </div>
 
             <div className="nav-toggle" onClick={handleToggle}>
@@ -157,7 +208,7 @@ export default function Nav() {
                 </svg>
 
                 <div className="menu-logo">
-                    <a href="/">
+                    <a href="/" onClick={(e) => handleLinkClick(e, "/")}>
                         CRUISE
                     </a>
                 </div>
@@ -167,7 +218,7 @@ export default function Nav() {
                         Get in touch
                     </p>
                     <h3 className="menu-info-item" style={{ opacity: 0, transform: "translateY(100px)" }}>
-                        studio@clicked.co
+                        vishal thakur
                     </h3>
                     <h3 className="menu-info-item" style={{ opacity: 0, transform: "translateY(100px)" }}>
                         +(91)6006569500
@@ -183,7 +234,12 @@ export default function Nav() {
 
                 <div className="menu-col menu-col-links">
                     {menuLinks.map((link, linkIdx) => (
-                        <a key={linkIdx} href={link.href}>
+                        <a
+                            key={linkIdx}
+                            href={link.href}
+                            onClick={(e) => handleLinkClick(e, link.href)}
+                            className={currentPath === link.href ? "active" : ""}
+                        >
                             {link.label.split("").map((char, charIdx) => (
                                 <span
                                     key={charIdx}

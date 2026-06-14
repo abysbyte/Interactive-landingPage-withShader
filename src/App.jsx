@@ -79,6 +79,8 @@ export default function App() {
                 return <Contact />;
             case "/careers":
                 return <Careers />;
+            case "/Portfolio":
+                return <a href="https://thwyzi.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
             case "/":
             default:
                 return null;

@@ -123,7 +123,13 @@ export default function Nav({ currentPath, onNavigate }) {
         }
     });
 
-    const handleLinkClick = (e, href) => {
+    const handleLinkClick = (e, href, isExternal) => {
+        if (isExternal) {
+            if (isOpen) {
+                handleToggle();
+            }
+            return;
+        }
         e.preventDefault();
         if (currentPath === href) {
             if (isOpen) {
@@ -180,6 +186,7 @@ export default function Nav({ currentPath, onNavigate }) {
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
         { label: "Careers", href: "/careers" },
+        { label: "Portfolio", href: "https://thwyzi.vercel.app/", isExternal: true },
     ];
 
     return (
@@ -237,8 +244,10 @@ export default function Nav({ currentPath, onNavigate }) {
                         <a
                             key={linkIdx}
                             href={link.href}
-                            onClick={(e) => handleLinkClick(e, link.href)}
+                            onClick={(e) => handleLinkClick(e, link.href, link.isExternal)}
                             className={currentPath === link.href ? "active" : ""}
+                            target={link.isExternal ? "_blank" : undefined}
+                            rel={link.isExternal ? "noopener noreferrer" : undefined}
                         >
                             {link.label.split("").map((char, charIdx) => (
                                 <span
